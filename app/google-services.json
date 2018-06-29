@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "706744827409",
+    "firebase_url": "https://ride-4aa80.firebaseio.com",
+    "project_id": "ride-4aa80",
+    "storage_bucket": "ride-4aa80.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:706744827409:android:8d0f8903d509093b",
+        "android_client_info": {
+          "package_name": "com.ride.my.ride"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "706744827409-0s446icghoag9a607nmt1tlvjphgnbef.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ride.my.ride",
+            "certificate_hash": "d4b7a41dd86e1dc41be6b9d0f95cd90db76dd24e"
+          }
+        },
+        {
+          "client_id": "706744827409-smi5b5nvn6rq5rrlnbtl32atgoc9cg7q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBwLzlaSugYTYSZ9_-PqRoVHdUy1fEhl_4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "706744827409-smi5b5nvn6rq5rrlnbtl32atgoc9cg7q.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
