@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">Ride</string>
     <string name="logo_content_description">Ride Logo</string>
+    <string name="reg_email_field_hint">Your Email...</string>
+    <string name="reg_password_hint">Your Password...</string>
+    <string name="reg_pwd_conf_hint">Confirm Your Password...</string>
+    <string name="reg_btn_txt">Create my account</string>
+    <string name="reg_login_btn_txt">I already have an account</string>
 </resources>
