@@ -53,7 +53,7 @@ public class SplashScreen extends AppCompatActivity {
 
     }
     /*
-    @Override    //Only to force the user to be logout for testing purpose
+    @Override    //Only to force the user to be logout for testing purposes
     protected void onDestroy() {
         super.onDestroy();
 

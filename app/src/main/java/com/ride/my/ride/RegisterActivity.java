@@ -94,6 +94,15 @@ public class RegisterActivity extends AppCompatActivity {
                     }
                 }
             });
+
+        regLoginBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                sendToLogin();
+
+            }
+        });
     }
 
     /*
@@ -121,5 +130,11 @@ public class RegisterActivity extends AppCompatActivity {
         finish();
     }
 
+    private void sendToLogin() {
+
+        Intent loginIntent = new Intent(RegisterActivity.this, LoginActivity.class);
+        startActivity(loginIntent);
+        finish();
+    }
 
 }
