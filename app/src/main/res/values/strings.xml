@@ -6,4 +6,8 @@
     <string name="reg_pwd_conf_hint">Confirm Your Password...</string>
     <string name="reg_btn_txt">Create my account</string>
     <string name="reg_login_btn_txt">I already have an account</string>
+    <string name="login_email_field_hint">Your Email...</string>
+    <string name="login_password_hint">Your Password...</string>
+    <string name="login_btn_txt">Login to account</string>
+    <string name="login_reg_btn_txt">Need an account?</string>
 </resources>
