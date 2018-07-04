@@ -52,8 +52,8 @@ public class SplashScreen extends AppCompatActivity {
         }, SPLASH_TIME_OUT);
 
     }
-    /*
-    @Override    //Only to force the user to be logout for testing purposes
+
+    /*@Override    //Only to force the user to be logout for testing purposes
     protected void onDestroy() {
         super.onDestroy();
 
@@ -63,7 +63,7 @@ public class SplashScreen extends AppCompatActivity {
 
     /*
             this method redirect the user to the Main page
-        */
+    */
     private void sendToMain(){
 
         Intent mainIntent = new Intent(SplashScreen.this, MainActivity.class);

@@ -46,14 +46,14 @@ public class RegisterActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
 
         regEmailField = findViewById(R.id.reg_email_txt);
-        regPasswordField = findViewById(R.id.reg_pwd_txt);
-        regPasswordConfField = findViewById(R.id.reg_pwd_conf_txt);
-        registerBtn = findViewById(R.id.reg_btn);
-        regLoginBtn = findViewById(R.id.reg_login_btn);
+        regPasswordField = findViewById(R.id.login_pwd_txt);
+        regPasswordConfField = findViewById(R.id.login_pwd_conf_txt);
+        registerBtn = findViewById(R.id.login_btn);
+        regLoginBtn = findViewById(R.id.login_reg_btn);
         regProgress = findViewById(R.id.reg_progress_bar);
 
         /*
-            This event will create a new user if an email and address and two matching password are
+            This event will create a new user if an email address and two matching password are
             provided and also redirect you to the main page. If the email address is not of the correct
             format or both password do not match, an error message will display
          */
