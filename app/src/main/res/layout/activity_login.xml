@@ -4,75 +4,94 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary"
+    android:background="#f7f7fa"
     tools:context=".LoginActivity"
     tools:layout_editor_absoluteY="25dp">
 
-    <EditText
-        android:id="@+id/login_email_text"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
+    <Button
+        android:id="@+id/login_btn"
+        android:layout_width="368dp"
+        android:layout_height="56dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/button_shape"
+        android:fontFamily="@font/montserrat"
+        android:paddingBottom="20dp"
+        android:paddingTop="20dp"
+        android:text="@string/login_btn_txt"
+        android:textColor="@android:color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/login_forgot_pwd_link" />
+
+    <Button
+        android:id="@+id/reg_login_btn"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="8dp"
         android:background="@android:color/white"
+        android:elevation="0dp"
+        android:fontFamily="@font/montserrat"
+        android:paddingBottom="20dp"
+        android:paddingTop="20dp"
+        android:text="@string/login_reg_btn_txt"
+        android:textColor="@android:color/darker_gray"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/reg_tab"
+        app:layout_constraintTop_toBottomOf="@+id/login_progress_bar" />
+
+    <ImageView
+        android:id="@+id/login_tab_underline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/cd_login_tab"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/reg_tab"
+        app:srcCompat="@drawable/btn_gradient" />
+
+    <EditText
+        android:id="@+id/reg_email_text"
+        android:layout_width="368dp"
+        android:layout_height="57dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="52dp"
+        android:background="@drawable/input_field_light"
         android:ems="10"
+        android:fontFamily="@font/montserrat"
         android:hint="@string/login_email_field_hint"
         android:inputType="textEmailAddress"
         android:padding="16dp"
         android:singleLine="false"
+        android:textColor="@color/colorPrimaryDark"
+        android:textColorHint="@android:color/darker_gray"
         android:textSize="@dimen/default_text_size"
-        app:layout_constraintBottom_toTopOf="@+id/login_pwd_txt"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/login_tab_underline" />
 
     <EditText
-        android:id="@+id/login_pwd_txt"
-        android:layout_width="0dp"
+        android:id="@+id/reg_pwd_txt"
+        android:layout_width="368dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:background="@android:color/white"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/input_field_light"
         android:ems="10"
+        android:fontFamily="@font/montserrat"
         android:hint="@string/reg_password_hint"
         android:inputType="textPassword"
         android:padding="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/login_btn"
+        android:textColor="@color/colorPrimaryDark"
+        android:textColorHint="@android:color/darker_gray"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/reg_email_text" />
 
-    <Button
-        android:id="@+id/login_btn"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="76dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:paddingBottom="20dp"
-        android:paddingTop="20dp"
-        android:text="@string/login_btn_txt"
-        app:layout_constraintBottom_toTopOf="@+id/login_reg_btn"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/login_reg_btn"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:elevation="0dp"
-        android:paddingBottom="20dp"
-        android:paddingTop="20dp"
-        android:text="@string/login_reg_btn_txt"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
 
     <ProgressBar
         android:id="@+id/login_progress_bar"
@@ -85,5 +104,42 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/reg_tab"
+        android:layout_width="180dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:background="@android:color/white"
+        android:contentDescription="@string/cd_login_tab"
+        android:fontFamily="@font/montserrat"
+        android:paddingBottom="19dp"
+        android:paddingTop="21dp"
+        android:text="@string/login_tab_txt"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toStartOf="@+id/reg_login_btn"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/login_progress_bar" />
+
+    <TextView
+        android:id="@+id/login_forgot_pwd_link"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
+        android:fontFamily="@font/montserrat"
+        android:text="@string/login_forgot_pwd_txt"
+        android:textColor="@android:color/darker_gray"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/reg_pwd_txt" />
+
 
 </android.support.constraint.ConstraintLayout>

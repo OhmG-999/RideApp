@@ -15,7 +15,6 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -44,10 +43,10 @@ public class LoginActivity extends AppCompatActivity {
         */
         mAuth = FirebaseAuth.getInstance();
 
-        logEmailField = findViewById(R.id.login_email_text);
-        logPasswordField = findViewById(R.id.login_pwd_txt);
+        logEmailField = findViewById(R.id.reg_email_text);
+        logPasswordField = findViewById(R.id.reg_pwd_txt);
         loginBtn = findViewById(R.id.login_btn);
-        loginRegBtn = findViewById(R.id.login_reg_btn);
+        loginRegBtn = findViewById(R.id.reg_login_btn);
         loginProgress = findViewById(R.id.login_progress_bar);
 
         /*
@@ -100,14 +99,6 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-
-        if(currentUser != null) {
-
-            sendToMain();
-
-        }
 
     }
 

@@ -15,7 +15,6 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -25,7 +24,7 @@ public class RegisterActivity extends AppCompatActivity {
     // Declare private variables that will be used for each UI elements
     private TextView regEmailField;
     private TextView regPasswordField;
-    private TextView regPasswordConfField;
+    private TextView regNameField;
     private Button registerBtn;
     private Button regLoginBtn;
     private ProgressBar regProgress;
@@ -33,7 +32,7 @@ public class RegisterActivity extends AppCompatActivity {
     // Declare variables to hold the content of the email, password and confirm password fields
     private String email;
     private String pwd;
-    private String pwdConfirm;
+    private String name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,11 +44,11 @@ public class RegisterActivity extends AppCompatActivity {
         */
         mAuth = FirebaseAuth.getInstance();
 
-        regEmailField = findViewById(R.id.reg_email_txt);
-        regPasswordField = findViewById(R.id.login_pwd_txt);
-        regPasswordConfField = findViewById(R.id.login_pwd_conf_txt);
-        registerBtn = findViewById(R.id.login_btn);
-        regLoginBtn = findViewById(R.id.login_reg_btn);
+        regNameField = findViewById(R.id.reg_name_txt);
+        regEmailField = findViewById(R.id.reg_email_text);
+        regPasswordField = findViewById(R.id.reg_pwd_txt);
+        registerBtn = findViewById(R.id.reg_btn);
+        regLoginBtn = findViewById(R.id.reg_login_btn);
         regProgress = findViewById(R.id.reg_progress_bar);
 
         /*
@@ -61,39 +60,35 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                name = regNameField.getText().toString();
                 email = regEmailField.getText().toString();
                 pwd = regPasswordField.getText().toString();
-                pwdConfirm = regPasswordConfField.getText().toString();
 
-                if(!TextUtils.isEmpty(email) && !TextUtils.isEmpty(pwd) && !TextUtils.isEmpty(pwdConfirm)){
+                if(!TextUtils.isEmpty(name) && !TextUtils.isEmpty(email) && !TextUtils.isEmpty(pwd)){
 
                     regProgress.setVisibility(View.VISIBLE);
 
-                    if(pwd.equals(pwdConfirm)){
+                    mAuth.createUserWithEmailAndPassword(email, pwd).addOnCompleteListener(new OnCompleteListener<AuthResult>(){
 
-                        mAuth.createUserWithEmailAndPassword(email, pwd).addOnCompleteListener(new OnCompleteListener<AuthResult>(){
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
 
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
+                            if(task.isSuccessful()){
 
-                                if(task.isSuccessful()){
-
-                                    sendToMain();
-                                }
-                                else{
-
-                                    Toast.makeText(RegisterActivity.this, "The Password and Confirm Password fields don't match", Toast.LENGTH_LONG).show();
-                                }
-
-                                regProgress.setVisibility(View.INVISIBLE);
-
+                                sendToMain();
                             }
-                        });
+                            else{
+
+                                Toast.makeText(RegisterActivity.this, "The Password and Confirm Password fields don't match", Toast.LENGTH_LONG).show();
+                            }
+
+                            regProgress.setVisibility(View.INVISIBLE);
 
                         }
-                    }
+                    });
                 }
-            });
+            }
+        });
 
         regLoginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -112,14 +107,6 @@ public class RegisterActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-
-        if(currentUser != null) {
-
-            sendToMain();
-
-        }
 
     }
 
