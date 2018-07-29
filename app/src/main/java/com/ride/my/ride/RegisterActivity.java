@@ -15,11 +15,16 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.HashMap;
 
 public class RegisterActivity extends AppCompatActivity {
 
     // Declare an instance of FirebaseAuth
     private FirebaseAuth mAuth;
+    private DatabaseReference mDatabase;
 
     // Declare private variables that will be used for each UI elements
     private TextView regEmailField;
@@ -33,6 +38,7 @@ public class RegisterActivity extends AppCompatActivity {
     private String email;
     private String pwd;
     private String name;
+    private String currentUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +49,7 @@ public class RegisterActivity extends AppCompatActivity {
             When onCreate is invoked, it create a connection to the FirebaseAuth instance
         */
         mAuth = FirebaseAuth.getInstance();
+        mDatabase = FirebaseDatabase.getInstance().getReference();
 
         regNameField = findViewById(R.id.reg_name_txt);
         regEmailField = findViewById(R.id.reg_email_text);
@@ -60,15 +67,15 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                name = regNameField.getText().toString();
-                email = regEmailField.getText().toString();
-                pwd = regPasswordField.getText().toString();
+                setName(regNameField.getText().toString().trim());
+                setEmail(regEmailField.getText().toString().trim());
+                setPwd(regPasswordField.getText().toString().trim());
 
-                if(!TextUtils.isEmpty(name) && !TextUtils.isEmpty(email) && !TextUtils.isEmpty(pwd)){
+                if(!TextUtils.isEmpty(getName()) && !TextUtils.isEmpty(getEmail()) && !TextUtils.isEmpty(getPwd())){
 
                     regProgress.setVisibility(View.VISIBLE);
 
-                    mAuth.createUserWithEmailAndPassword(email, pwd).addOnCompleteListener(new OnCompleteListener<AuthResult>(){
+                    mAuth.createUserWithEmailAndPassword(getEmail(), getPwd()).addOnCompleteListener(new OnCompleteListener<AuthResult>(){
 
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
@@ -86,7 +93,9 @@ public class RegisterActivity extends AppCompatActivity {
 
                         }
                     });
+
                 }
+
             }
         });
 
@@ -112,8 +121,16 @@ public class RegisterActivity extends AppCompatActivity {
 
     private void sendToMain() {
 
-        Intent mainIntent = new Intent(RegisterActivity.this, MainActivity.class);
-        startActivity(mainIntent);
+        setCurrentUser(mAuth.getInstance().getCurrentUser().getUid());
+
+        HashMap<String, String> dataMap = new HashMap<>();
+        dataMap.put("Name", getName());
+        dataMap.put("Email", getEmail());
+
+        mDatabase.child(getCurrentUser()).setValue(dataMap);
+
+        Intent payIntent = new Intent(RegisterActivity.this, PaymentActivity.class);
+        startActivity(payIntent);
         finish();
     }
 
@@ -122,6 +139,38 @@ public class RegisterActivity extends AppCompatActivity {
         Intent loginIntent = new Intent(RegisterActivity.this, LoginActivity.class);
         startActivity(loginIntent);
         finish();
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPwd() {
+        return pwd;
+    }
+
+    public void setPwd(String pwd) {
+        this.pwd = pwd;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getCurrentUser() {
+        return currentUser;
+    }
+
+    public void setCurrentUser(String currentUser) {
+        this.currentUser = currentUser;
     }
 
 }

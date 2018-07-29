@@ -12,7 +12,6 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class SplashScreen extends AppCompatActivity {
 
-    //private FirebaseUser currentUser;
     private Button splashEmailBtn;
 
     @Override
