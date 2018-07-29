@@ -59,14 +59,14 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                email = logEmailField.getText().toString();
-                pwd = logPasswordField.getText().toString();
+                setEmail(logEmailField.getText().toString());
+                setPwd(logPasswordField.getText().toString());
 
-                if (!TextUtils.isEmpty(email) && !TextUtils.isEmpty(pwd)) {
+                if (!TextUtils.isEmpty(getEmail()) && !TextUtils.isEmpty(getPwd())) {
 
                     loginProgress.setVisibility(View.VISIBLE);
 
-                    mAuth.signInWithEmailAndPassword(email, pwd).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    mAuth.signInWithEmailAndPassword(getEmail(), getPwd()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
 
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
@@ -115,4 +115,22 @@ public class LoginActivity extends AppCompatActivity {
         startActivity(regIntent);
         finish();
     }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPwd() {
+        return pwd;
+    }
+
+    public void setPwd(String pwd) {
+        this.pwd = pwd;
+    }
+
+
 }
