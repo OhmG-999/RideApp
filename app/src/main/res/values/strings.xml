@@ -2,6 +2,7 @@
     <string name="app_name">Ride</string>
     <string name="logo_content_description">Ride Logo</string>
     <string name="reg_email_field_hint">Email</string>
+    <string name="reg_name_text_hint">Enter your name</string>
     <string name="reg_password_hint">Password</string>
     <string name="reg_pwd_conf_hint">Confirm Your Password...</string>
     <string name="reg_btn_tab">Sign Up</string>
@@ -21,5 +22,9 @@
     <string name="login_name_field">Name</string>
     <string name="login_forgot_pwd_txt">Forgot Password</string>
     <string name="cd_login_tab">Sign In</string>
-    <string name="reg_name_text_hint">Name</string>
+    <string name="user_profile_default_img">User Profile Default Image</string>
+    <string name="choose_picture_btn_txt">Choose Your Picture</string>
+    <string name="save_picture_btn_txt">Save Your Picture</string>
+    <string name="skip_step">Skip for Now</string>
+    <string name="round_img">Round shape</string>
 </resources>

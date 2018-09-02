@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
@@ -18,11 +19,9 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import java.util.HashMap;
+public class RegisterActivity extends AppCompatActivity{
 
-public class RegisterActivity extends AppCompatActivity {
-
-    // Declare an instance of FirebaseAuth
+    // Declare instances of FirebaseAuth and FirebaseDatabase
     private FirebaseAuth mAuth;
     private DatabaseReference mDatabase;
 
@@ -30,14 +29,18 @@ public class RegisterActivity extends AppCompatActivity {
     private TextView regEmailField;
     private TextView regPasswordField;
     private TextView regNameField;
+    private String image = "nullos";
     private Button registerBtn;
     private Button regLoginBtn;
     private ProgressBar regProgress;
+    private final String TAG = "RideApp -->";
 
-    // Declare variables to hold the content of the email, password and confirm password fields
+    User newUser = new User();
+
+    /* Declare variables to hold the content of the email, password and confirm password fields
     private String email;
     private String pwd;
-    private String name;
+    private String name;*/
     private String currentUser;
 
     @Override
@@ -67,35 +70,56 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                setName(regNameField.getText().toString().trim());
-                setEmail(regEmailField.getText().toString().trim());
-                setPwd(regPasswordField.getText().toString().trim());
+                /*
+                newUser.setName(regNameField.getText().toString().trim());
+                newUser.setEmail(regEmailField.getText().toString().trim());
+                newUser.setPwd(regPasswordField.getText().toString().trim());*/
 
-                if(!TextUtils.isEmpty(getName()) && !TextUtils.isEmpty(getEmail()) && !TextUtils.isEmpty(getPwd())){
+                newUser.prepareStatement(
+                        regNameField.getText().toString().trim(),
+                        regEmailField.getText().toString().trim(),
+                        regPasswordField.getText().toString().trim(),
+                        getImage()
+                );
+                Log.i(TAG, "Prepare register statement");
+
+                if(!TextUtils.isEmpty(newUser.getName()) && !TextUtils.isEmpty(newUser.getEmail()) && !TextUtils.isEmpty(newUser.getPwd())){
 
                     regProgress.setVisibility(View.VISIBLE);
 
-                    mAuth.createUserWithEmailAndPassword(getEmail(), getPwd()).addOnCompleteListener(new OnCompleteListener<AuthResult>(){
+                    try{
 
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
+                        mAuth.createUserWithEmailAndPassword(
+                                newUser.getEmail(),
+                                newUser.getPwd()).addOnCompleteListener(new OnCompleteListener<AuthResult>(){
 
-                            if(task.isSuccessful()){
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
 
-                                sendToMain();
+                                if(task.isSuccessful()){
+
+                                    Log.i(TAG, "User created successfully in Firebase Auth DB");
+                                    sendToProfilePicture();
+                                }
+                                else{
+
+                                    Toast.makeText(
+                                            RegisterActivity.this,
+                                            "Please enter a valid email address",
+                                            Toast.LENGTH_LONG).show();
+                                }
+
+                                regProgress.setVisibility(View.INVISIBLE);
+
                             }
-                            else{
+                        });
 
-                                Toast.makeText(RegisterActivity.this, "The Password and Confirm Password fields don't match", Toast.LENGTH_LONG).show();
-                            }
+                    }
+                    catch (Exception e){
+                        Log.i(TAG, "Error creating new user in Firebase Auth DB", e);
 
-                            regProgress.setVisibility(View.INVISIBLE);
-
-                        }
-                    });
-
+                    }
                 }
-
             }
         });
 
@@ -119,19 +143,33 @@ public class RegisterActivity extends AppCompatActivity {
 
     }
 
-    private void sendToMain() {
+    private void sendToProfilePicture() {
 
-        setCurrentUser(mAuth.getInstance().getCurrentUser().getUid());
+        try{
 
+            setCurrentUser(mAuth.getInstance().getCurrentUser().getUid());
+            Log.i(TAG, "Retrieve current user");
+
+        /*
         HashMap<String, String> dataMap = new HashMap<>();
-        dataMap.put("Name", getName());
-        dataMap.put("Email", getEmail());
+        dataMap.put("Name", newUser.getName());
+        dataMap.put("Email", newUser.getEmail());
+        dataMap.put("Picture", newUser.getImage());*/
 
-        mDatabase.child(getCurrentUser()).setValue(dataMap);
+            mDatabase.child(getCurrentUser()).setValue(newUser.writeNewUserDatabase());
+            Log.i(TAG,newUser.writeNewUserDatabase().toString());
+            Log.i(TAG, "Create new user in Firebase Real-time DB");
 
-        Intent payIntent = new Intent(RegisterActivity.this, PaymentActivity.class);
-        startActivity(payIntent);
+        }
+        catch (Exception e){
+
+            Log.e(TAG, "Cannot retrieve current user from connection");
+        }
+
+        Intent addPictureIntent = new Intent(RegisterActivity.this, ProfilePictureActivity.class);
+        startActivity(addPictureIntent);
         finish();
+
     }
 
     private void sendToLogin() {
@@ -141,6 +179,7 @@ public class RegisterActivity extends AppCompatActivity {
         finish();
     }
 
+    /*
     public String getEmail() {
         return email;
     }
@@ -163,6 +202,14 @@ public class RegisterActivity extends AppCompatActivity {
 
     public void setName(String name) {
         this.name = name;
+    }*/
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public String getCurrentUser() {
@@ -172,5 +219,4 @@ public class RegisterActivity extends AppCompatActivity {
     public void setCurrentUser(String currentUser) {
         this.currentUser = currentUser;
     }
-
 }
