@@ -45,23 +45,11 @@ public class ProfilePictureActivity extends AppCompatActivity {
     private StorageReference mStorage;
     private CircleImageView pictureImageView;
     private ProgressBar imgProgress;
-    private Button choosePictureBtn;
     private Button savePictureBtn;
-    private String currentUser;
+    private Button skipPicture;
     private final String TAG = "RideApp -->";
-
-    private final int PICK_IMAGE = 100;
     protected Uri imageUri = null;
-    private UploadTask uploadTask;
-    private String image;
-    private String path;
-
     private String user_ID;
-    private ExifInterface exifInterface;
-    private int rotate;
-    private Bitmap bitmapImage;
-    private Bitmap bitmapImg;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,8 +60,8 @@ public class ProfilePictureActivity extends AppCompatActivity {
         mStorage = FirebaseStorage.getInstance().getReference();
 
         pictureImageView = findViewById(R.id.user_profile_img);
-        choosePictureBtn = findViewById(R.id.choose_img_btn);
         savePictureBtn = findViewById(R.id.save_img_btn);
+        skipPicture = findViewById(R.id.skip_btn);
         imgProgress = findViewById(R.id.img_upload_progress);
 
         pictureImageView.setOnClickListener(new View.OnClickListener() {
@@ -169,6 +157,15 @@ public class ProfilePictureActivity extends AppCompatActivity {
                 }
             }
         });
+
+        skipPicture.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+                sendToMain();
+            }
+        });
     }
 
     private void openGallery(){
@@ -194,6 +191,7 @@ public class ProfilePictureActivity extends AppCompatActivity {
             else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
 
                 Exception error = result.getError();
+                Log.e(TAG, "Image could not been cropped", error);
             }
         }
     }
@@ -211,45 +209,5 @@ public class ProfilePictureActivity extends AppCompatActivity {
 
     public void setUser_ID(String user_ID) {
         this.user_ID = user_ID;
-    }
-
-    private Uri getImageUri() {
-        return imageUri;
-    }
-
-    private void setImageUri(Uri imageUri) {
-        this.imageUri = imageUri;
-    }
-
-    private String getImage() {
-        return image;
-    }
-
-    private void setImage(String image) {
-        this.image = image;
-    }
-
-    public String getPath() {
-        return path;
-    }
-
-    public void setPath(String path) {
-        this.path = path;
-    }
-
-    public int getRotate() {
-        return rotate;
-    }
-
-    public void setRotate(int rotate) {
-        this.rotate = rotate;
-    }
-
-    public Bitmap getBitmapImage() {
-        return bitmapImage;
-    }
-
-    public void setBitmapImage(Bitmap bitmapImage) {
-        this.bitmapImage = bitmapImage;
     }
 }
