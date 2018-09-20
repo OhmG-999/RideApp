@@ -28,4 +28,10 @@
     <string name="skip_step">Skip for Now</string>
     <string name="round_img">Round shape</string>
     <string name="propose_ride_txt">Propose a Ride</string>
+    <string name="starting_point_hint">Where are you leaving from?</string>
+    <string name="finishing_point_hint">Where do you go?</string>
+    <string name="date_time_txt">Date and Time</string>
+    <string name="pick_departure_date_hint">Pick a departure date</string>
+    <string name="create_ride_btn_txt">Save my Ride</string>
+    <string name="nbr_seat_txtview">Number of seats available</string>
 </resources>
