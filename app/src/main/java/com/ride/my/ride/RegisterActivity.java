@@ -52,7 +52,6 @@ public class RegisterActivity extends AppCompatActivity{
             When onCreate is invoked, it create a connection to the FirebaseAuth instance
         */
         mAuth = FirebaseAuth.getInstance();
-        mDatabase = FirebaseDatabase.getInstance().getReference();
 
         regNameField = findViewById(R.id.reg_name_txt);
         regEmailField = findViewById(R.id.reg_email_text);
@@ -150,13 +149,9 @@ public class RegisterActivity extends AppCompatActivity{
             setCurrentUser(mAuth.getInstance().getCurrentUser().getUid());
             Log.i(TAG, "Retrieve current user");
 
-        /*
-        HashMap<String, String> dataMap = new HashMap<>();
-        dataMap.put("Name", newUser.getName());
-        dataMap.put("Email", newUser.getEmail());
-        dataMap.put("Picture", newUser.getImage());*/
-
-            mDatabase.child(getCurrentUser()).setValue(newUser.writeNewUserDatabase());
+            mDatabase = FirebaseDatabase.getInstance().getReference();
+            DatabaseReference newMDatabase = mDatabase.child("Users");
+            newMDatabase.child(getCurrentUser()).setValue(newUser.writeNewUserDatabase());
             Log.i(TAG,newUser.writeNewUserDatabase().toString());
             Log.i(TAG, "Create new user in Firebase Real-time DB");
 

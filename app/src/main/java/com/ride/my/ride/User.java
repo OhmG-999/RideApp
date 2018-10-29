@@ -10,16 +10,31 @@ public class User {
     private String name;
     private String image;
 
+    Ride myRide = new Ride();
+
     public User(){
 
     }
 
-    public User(String email, String pwd, String name, String image){
+    public User(String email, String name, String image){
 
         setEmail(email);
-        setPwd(pwd);
         setName(name);
         setImage(image);
+    }
+
+    public User(String email, String name, String image,
+                String userid, String starting_p, String finishing_p,
+                String selectD, String numbSeat){
+
+        setEmail(email);
+        setName(name);
+        setImage(image);
+        myRide.setRideDriverID(userid);
+        myRide.setStartingPoint(starting_p);
+        myRide.setFinishingPoint(finishing_p);
+        myRide.setSelectedDate(selectD);
+        myRide.setNumberSeat(numbSeat);
     }
 
     protected void prepareStatement(String name, String email, String pwd, String img){
