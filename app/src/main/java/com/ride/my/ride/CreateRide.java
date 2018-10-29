@@ -21,7 +21,6 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.text.DateFormat;
 import java.util.Calendar;
-import java.util.UUID;
 
 public class CreateRide extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
 
@@ -32,7 +31,7 @@ public class CreateRide extends AppCompatActivity implements DatePickerDialog.On
     private TextView passengerCounter;
     private Button increasePassenger;
     private Button decreasePassenger;
-    private Button saveMyRide;
+    private Button saveMyRideBtn;
     private Ride ride;
 
     private FirebaseAuth mAuth;
@@ -51,14 +50,14 @@ public class CreateRide extends AppCompatActivity implements DatePickerDialog.On
         mAuth = FirebaseAuth.getInstance();
 
         rideProgress = findViewById(R.id.ride_progress_bar);
-        startingPoint = findViewById(R.id.starting_point_txt);
-        finishingPoint = findViewById(R.id.finishing_point_txt);
-        selectedDate = findViewById(R.id.departure_date_txtview);
-        calendarBtn = findViewById(R.id.calendar_btn);
+        startingPoint = findViewById(R.id.search_starting_point_txt);
+        finishingPoint = findViewById(R.id.search_finishing_point_txt);
+        selectedDate = findViewById(R.id.searched_departure_date_txtview);
+        calendarBtn = findViewById(R.id.search_calendar_btn);
         passengerCounter = findViewById(R.id.number_seat_txt);
         increasePassenger = findViewById(R.id.increase_seat_btn);
         decreasePassenger = findViewById(R.id.decrease_seat_btn);
-        saveMyRide = findViewById(R.id.create_ride_btn);
+        saveMyRideBtn = findViewById(R.id.create_ride_btn);
 
         ride = new Ride();
 
@@ -90,7 +89,7 @@ public class CreateRide extends AppCompatActivity implements DatePickerDialog.On
             }
         });
 
-        saveMyRide.setOnClickListener(new View.OnClickListener(){
+        saveMyRideBtn.setOnClickListener(new View.OnClickListener(){
 
             @Override
             public void onClick(View v) {
@@ -111,8 +110,15 @@ public class CreateRide extends AppCompatActivity implements DatePickerDialog.On
 
                     try{
 
-                        mDatabase = FirebaseDatabase.getInstance().getReference();
+                        // This is the initial implementation
+                        /*
+                        mDatabase = FirebaseDatabase.getInstance().getReference("Users");
                         DatabaseReference newMDatabase = mDatabase.child(getUser()).child("Rides").push();
+                        newMDatabase.setValue(ride.writeRideDatabase());*/
+
+                        // This is the new flatten implementation
+                        mDatabase = FirebaseDatabase.getInstance().getReference();
+                        DatabaseReference newMDatabase = mDatabase.child("Rides").push();
                         newMDatabase.setValue(ride.writeRideDatabase());
 
                         sendToMain();

@@ -5,7 +5,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#f7f7fa"
-    tools:context=".CreateRide">
+    tools:context=".SearchRide">
+
+    <Button
+        android:id="@+id/search_ride_btn"
+        android:layout_width="0dp"
+        android:layout_height="57dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/button_shape"
+        android:padding="16dp"
+        android:text="@string/search_ride_btn_txt"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/searched_departure_date_txtview" />
 
     <EditText
         android:id="@+id/search_starting_point_txt"
@@ -93,97 +108,17 @@
         app:layout_constraintStart_toEndOf="@+id/searched_departure_date_txtview"
         app:srcCompat="@android:drawable/ic_menu_my_calendar" />
 
-    <Button
-        android:id="@+id/create_ride_btn"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginStart="16dp"
-        android:background="@drawable/button_shape"
-        android:padding="16dp"
-        android:text="@string/create_ride_btn_txt"
-        android:textSize="18sp"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/result_list"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="50dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/number_seat_txt" />
-
-    <TextView
-        android:id="@+id/nbr_seat_txtview"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:fontFamily="@font/montserrat"
-        android:padding="16dp"
-        android:text="@string/nbr_seat_txtview"
-        android:textColor="@color/colorPrimaryDark"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/searched_departure_date_txtview" />
-
-    <TextView
-        android:id="@+id/number_seat_txt"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:background="@drawable/input_field_light"
-        android:fontFamily="@font/montserrat"
-        android:padding="16dp"
-        android:textAlignment="center"
-        android:textColor="@android:color/darker_gray"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toStartOf="@+id/decrease_seat_btn"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nbr_seat_txtview" />
-
-    <Button
-        android:id="@+id/decrease_seat_btn"
-        android:layout_width="57dp"
-        android:layout_height="57dp"
-        android:layout_marginStart="8dp"
-        android:background="@drawable/button_shape"
-        android:text="-"
-        android:textAlignment="center"
-        android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="@+id/number_seat_txt"
-        app:layout_constraintEnd_toStartOf="@+id/increase_seat_btn"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/number_seat_txt"
-        app:layout_constraintTop_toTopOf="@+id/number_seat_txt" />
-
-    <Button
-        android:id="@+id/increase_seat_btn"
-        android:layout_width="57dp"
-        android:layout_height="57dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginStart="16dp"
-        android:background="@drawable/button_shape"
-        android:text="+"
-        android:textAlignment="center"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="@+id/decrease_seat_btn"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/decrease_seat_btn"
-        app:layout_constraintTop_toTopOf="@+id/decrease_seat_btn" />
-
-    <ProgressBar
-        android:id="@+id/ride_progress_bar"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:visibility="invisible"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
+        app:layout_constraintTop_toBottomOf="@+id/search_ride_btn" />
 
 </android.support.constraint.ConstraintLayout>

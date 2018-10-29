@@ -10,6 +10,7 @@ import android.widget.Button;
 public class MainActivity extends AppCompatActivity {
 
     private Button createRide;
+    private Button searchRide;
     private Toolbar menuToolbar;
 
     @Override
@@ -18,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         createRide = findViewById(R.id.propose_ride_btn);
+        searchRide = findViewById(R.id.search_btn);
         menuToolbar = findViewById(R.id.menuToolbar);
         setSupportActionBar(menuToolbar);
         getSupportActionBar().setTitle("Menu");
@@ -32,6 +34,15 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        searchRide.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+
+                sendToSearchRide();
+            }
+        });
+
 
 
     }
@@ -40,6 +51,13 @@ public class MainActivity extends AppCompatActivity {
 
         Intent mainIntent = new Intent(MainActivity.this, CreateRide.class);
         startActivity(mainIntent);
+        finish();
+    }
+
+    private void sendToSearchRide(){
+
+        Intent searchIntent = new Intent(MainActivity.this, SearchRide.class);
+        startActivity(searchIntent);
         finish();
     }
 }

@@ -134,7 +134,7 @@ public class ProfilePictureActivity extends AppCompatActivity {
                                     String picture_url = download_url.toString();
                                     Log.i(TAG,getUser_ID());
 
-                                    mDatabase = FirebaseDatabase.getInstance().getReference();
+                                    mDatabase = FirebaseDatabase.getInstance().getReference("Users");
                                     mDatabase.child(getUser_ID()).child("Picture").setValue(picture_url);
 
                                 }

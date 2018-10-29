@@ -34,4 +34,7 @@
     <string name="pick_departure_date_hint">Pick a departure date</string>
     <string name="create_ride_btn_txt">Save my Ride</string>
     <string name="nbr_seat_txtview">Number of seats available</string>
+    <string name="search_btn_txt">Search for a Ride</string>
+    <string name="search_starting_point_hint">Where do you want to start from?</string>
+    <string name="search_ride_btn_txt">Search a Ride</string>
 </resources>
