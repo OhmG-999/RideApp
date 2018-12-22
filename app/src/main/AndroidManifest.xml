@@ -35,6 +35,7 @@
             android:theme="@style/Base.Theme.AppCompat" /> <!-- optional (needed if default theme has no action bar) -->
         <activity android:name=".CreateRide" />
         <activity android:name=".SearchRide" />
+        <activity android:name=".PickRideActivity"></activity>
     </application>
 
 </manifest>

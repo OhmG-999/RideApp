@@ -29,7 +29,7 @@ public class RegisterActivity extends AppCompatActivity{
     private TextView regEmailField;
     private TextView regPasswordField;
     private TextView regNameField;
-    private String image = "nullos";
+    private String image = "null";
     private Button registerBtn;
     private Button regLoginBtn;
     private ProgressBar regProgress;
@@ -37,10 +37,6 @@ public class RegisterActivity extends AppCompatActivity{
 
     User newUser = new User();
 
-    /* Declare variables to hold the content of the email, password and confirm password fields
-    private String email;
-    private String pwd;
-    private String name;*/
     private String currentUser;
 
     @Override
@@ -49,7 +45,7 @@ public class RegisterActivity extends AppCompatActivity{
         setContentView(R.layout.activity_register);
 
         /*
-            When onCreate is invoked, it create a connection to the FirebaseAuth instance
+            When onCreate is invoked, it create a connection to the Firebase Auth instance
         */
         mAuth = FirebaseAuth.getInstance();
 
@@ -174,37 +170,8 @@ public class RegisterActivity extends AppCompatActivity{
         finish();
     }
 
-    /*
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPwd() {
-        return pwd;
-    }
-
-    public void setPwd(String pwd) {
-        this.pwd = pwd;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }*/
-
     public String getImage() {
         return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
     }
 
     public String getCurrentUser() {

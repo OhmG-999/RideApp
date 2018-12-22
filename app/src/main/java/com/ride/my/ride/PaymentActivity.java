@@ -2,7 +2,6 @@ package com.ride.my.ride;
 
 import android.app.Fragment;
 import android.content.Intent;
-import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Toast;
@@ -11,12 +10,7 @@ import com.realexpayments.hpp.HPPError;
 import com.realexpayments.hpp.HPPManager;
 import com.realexpayments.hpp.HPPManagerListener;
 
-import java.security.Timestamp;
-import java.util.Date;
 import java.util.Map;
-import java.util.Random;
-
-import static java.lang.System.currentTimeMillis;
 
 public class PaymentActivity extends AppCompatActivity implements HPPManagerListener <Map<String, String>>{
 
