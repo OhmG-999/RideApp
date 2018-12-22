@@ -37,4 +37,5 @@
     <string name="search_btn_txt">Search for a Ride</string>
     <string name="search_starting_point_hint">Where do you want to start from?</string>
     <string name="search_ride_btn_txt">Search a Ride</string>
+    <string name="user_picked_btn_txt">Book with this user</string>
 </resources>

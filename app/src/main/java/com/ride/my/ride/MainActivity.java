@@ -24,7 +24,6 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(menuToolbar);
         getSupportActionBar().setTitle("Menu");
 
-
         createRide.setOnClickListener(new View.OnClickListener(){
 
             @Override
@@ -42,9 +41,6 @@ public class MainActivity extends AppCompatActivity {
                 sendToSearchRide();
             }
         });
-
-
-
     }
 
     private void sendToCreateRide() {

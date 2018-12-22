@@ -38,7 +38,6 @@ public class CreateRide extends AppCompatActivity implements DatePickerDialog.On
     private DatabaseReference mDatabase;
 
     private String user;
-    private int rideUniqueID;
     private final String TAG = "RideApp -->";
     private ProgressBar rideProgress;
 
@@ -71,7 +70,7 @@ public class CreateRide extends AppCompatActivity implements DatePickerDialog.On
             }
         });
 
-        passengerCounter.setText(ride.getNumberSeat());
+        passengerCounter.setText(ride.getNumber_seat().toString());
         increasePassenger.setOnClickListener(new View.OnClickListener(){
 
             @Override
@@ -102,9 +101,9 @@ public class CreateRide extends AppCompatActivity implements DatePickerDialog.On
                         selectedDate.getText().toString().trim(),
                         passengerCounter.getText().toString().trim());
 
-                if(!TextUtils.isEmpty(ride.getStartingPoint()) && !TextUtils.isEmpty(ride.getFinishingPoint())
-                        && !TextUtils.isEmpty(ride.getSelectedDate()) && !TextUtils.isEmpty(ride.getNumberSeat())
-                        && !TextUtils.isEmpty(ride.getTotalFare())){
+                if(!TextUtils.isEmpty(ride.getStarting_Point()) && !TextUtils.isEmpty(ride.getFinishing_Point())
+                        && !TextUtils.isEmpty(ride.getDate()) && !TextUtils.isEmpty(ride.getNumber_seat())
+                        && !TextUtils.isEmpty(ride.getTotal_fare())){
 
                     rideProgress.setVisibility(View.VISIBLE);
 
@@ -148,25 +147,25 @@ public class CreateRide extends AppCompatActivity implements DatePickerDialog.On
 
     protected void increaseNumberSeats(){
 
-        int numberSeats = Integer.valueOf(ride.getNumberSeat());
+        int numberSeats = Integer.valueOf(ride.getNumber_seat());
 
         if(numberSeats < 4) {
             numberSeats++;
             String numberOfSeats = String.valueOf(numberSeats);
-            ride.setNumberSeat(numberOfSeats);
-            passengerCounter.setText(ride.getNumberSeat());
+            ride.setNumber_seat(numberOfSeats);
+            passengerCounter.setText(ride.getNumber_seat());
         }
     }
 
     protected void decreaseNumberSeats(){
 
-        int numberSeats = Integer.valueOf(ride.getNumberSeat());
+        int numberSeats = Integer.valueOf(ride.getNumber_seat());
 
         if (numberSeats > 1){
             --numberSeats;
             String numberOfSeats = String.valueOf(numberSeats);
-            ride.setNumberSeat(numberOfSeats);
-            passengerCounter.setText(ride.getNumberSeat());
+            ride.setNumber_seat(numberOfSeats);
+            passengerCounter.setText(ride.getNumber_seat());
         }
     }
 

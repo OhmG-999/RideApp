@@ -1,48 +1,31 @@
 package com.ride.my.ride;
 
 import java.util.HashMap;
-import android.text.TextUtils;
 
 public class User {
 
-    private String email;
+    private String Email;
     private String pwd;
-    private String name;
-    private String image;
-
-    Ride myRide = new Ride();
+    private String Name;
+    private String Picture;
 
     public User(){
 
     }
-
+    /*
     public User(String email, String name, String image){
 
         setEmail(email);
         setName(name);
-        setImage(image);
-    }
-
-    public User(String email, String name, String image,
-                String userid, String starting_p, String finishing_p,
-                String selectD, String numbSeat){
-
-        setEmail(email);
-        setName(name);
-        setImage(image);
-        myRide.setRideDriverID(userid);
-        myRide.setStartingPoint(starting_p);
-        myRide.setFinishingPoint(finishing_p);
-        myRide.setSelectedDate(selectD);
-        myRide.setNumberSeat(numbSeat);
-    }
+        setPicture(image);
+    }*/
 
     protected void prepareStatement(String name, String email, String pwd, String img){
 
         this.setName(name);
         this.setEmail(email);
         this.setPwd(pwd);
-        this.setImage(img);
+        this.setPicture(img);
     }
 
     protected HashMap writeNewUserDatabase(){
@@ -50,18 +33,18 @@ public class User {
         HashMap<String, String> dataMap = new HashMap<>();
         dataMap.put("Name", this.getName());
         dataMap.put("Email", this.getEmail());
-        dataMap.put("Picture", this.getImage());
+        dataMap.put("Picture", this.getPicture());
 
         return dataMap;
 
     }
 
     public String getEmail() {
-        return email;
+        return Email;
     }
 
     private void setEmail(String email) {
-        this.email = email;
+        this.Email = email;
     }
 
     public String getPwd() {
@@ -73,18 +56,18 @@ public class User {
     }
 
     public String getName() {
-        return name;
+        return Name;
     }
 
     private void setName(String name) {
-        this.name = name;
+        this.Name = name;
     }
 
-    public String getImage() {
-        return image;
+    public String getPicture() {
+        return Picture;
     }
 
-    private void setImage(String image) {
-        this.image = image;
+    private void setPicture(String picture) {
+        this.Picture = picture;
     }
 }
